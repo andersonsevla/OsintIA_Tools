@@ -76,11 +76,13 @@ cd osintia_tools
 **Exemplos:**
      ```python
      python3 OsintIA_Tools.py globo.com
+     
 python3 OsintIA_Tools.py example.org
      ```
      
 **Saída**
 Relatório em Texto: osint_report.txt
+
 Relatório em HTML: osint_report.html
 
 **Principais Tecnologias e Ferramentas**
