@@ -126,6 +126,33 @@ bash
 Copiar código
 git checkout -b minha-melhoria
 Submeta um Pull Request!
+
+## Atenção
+
+Para utilizar o **OsintIA_Tools.py**, é necessário configurar novas chaves de API para as integrações com a OpenAI e o Shodan. As chaves atuais **não devem ser reutilizadas** por questões de segurança.
+
+### Configuração de Chaves
+
+1. **Gere uma nova chave OPENAI_API_KEY**:
+   - Acesse [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys).
+   - Crie uma nova chave de API e substitua no script no local indicado:
+     ```python
+     OPENAI_API_KEY = "sua-nova-chave-aqui"
+     ```
+
+2. **Gere uma nova chave SHODAN_API_KEY**:
+   - Acesse [https://account.shodan.io/](https://account.shodan.io/).
+   - Crie ou recupere sua chave de API e substitua no script no local indicado:
+     ```python
+     SHODAN_API_KEY = "sua-nova-chave-aqui"
+     ```
+
+### Importante
+- Nunca compartilhe suas chaves de API publicamente ou em repositórios públicos.
+- Mantenha suas chaves seguras para evitar uso indevido e possíveis violações de segurança.
+
+Se precisar de ajuda, consulte a documentação oficial das APIs. 😊
+
 Licença
 Este projeto é licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
 
