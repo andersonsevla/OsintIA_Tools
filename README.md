@@ -64,20 +64,21 @@ Ferramentas do Kali Linux:
 dig, whois, nmap, wget, metagoofil, theHarvester, Sublist3r, WhatWeb, Photon, dnsenum.
 Execução
 Clone o repositório:
-
-bash
-Copiar código
 git clone https://github.com/seu-usuario/osintia_tools.git
+
 cd osintia_tools
+
 **Execute o script:**
      ```python
      python3 OsintIA_Tools.py <domínio>
      ```
+     
 **Exemplos:**
      ```python
      python3 OsintIA_Tools.py globo.com
 python3 OsintIA_Tools.py example.org
      ```
+     
 **Saída**
 Relatório em Texto: osint_report.txt
 Relatório em HTML: osint_report.html
