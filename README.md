@@ -69,21 +69,20 @@ bash
 Copiar código
 git clone https://github.com/seu-usuario/osintia_tools.git
 cd osintia_tools
-Execute o script:
-
-bash
-Copiar código
-python3 OsintIA_Tools.py <domínio>
-Exemplos:
-
-bash
-Copiar código
-python3 OsintIA_Tools.py globo.com
+**Execute o script:**
+     ```python
+     python3 OsintIA_Tools.py <domínio>
+     ```
+**Exemplos:**
+     ```python
+     python3 OsintIA_Tools.py globo.com
 python3 OsintIA_Tools.py example.org
-Saída
+     ```
+**Saída**
 Relatório em Texto: osint_report.txt
 Relatório em HTML: osint_report.html
-Principais Tecnologias e Ferramentas
+
+**Principais Tecnologias e Ferramentas**
 Shodan API: Obtenção de dados detalhados sobre IPs e dispositivos conectados.
 Nmap: Varredura de portas e identificação de serviços.
 Photon: Coleta avançada de URLs indexadas.
