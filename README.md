@@ -69,12 +69,12 @@ git clone https://github.com/seu-usuario/osintia_tools.git
 cd osintia_tools
 
 **Execute o script:**
-     ```python
+     ```
      python3 OsintIA_Tools.py <domínio>
      ```
      
 **Exemplos:**
-     ```python
+     ```
      python3 OsintIA_Tools.py globo.com```
      
 **Saída**
