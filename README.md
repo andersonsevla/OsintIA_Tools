@@ -1,173 +1,174 @@
 # **OsintIA_Tools.py**
 
-**OsintIA_Tools.py** é uma ferramenta automatizada de coleta e análise de informações públicas, integrando métodos de OSINT (*Open Source Intelligence*) e inteligência artificial para enriquecer os resultados. Este script foi desenvolvido com foco na cibersegurança, permitindo identificar possíveis vulnerabilidades e ameaças em domínios ou organizações.
+**OsintIA_Tools.py** is an automated tool for collecting and analyzing public information, integrating OSINT (*Open Source Intelligence*) methods and artificial intelligence to enhance the results. This script was developed with a focus on cybersecurity, enabling the identification of potential vulnerabilities and threats in domains or organizations.
 
-A ferramenta utiliza várias técnicas e integrações com ferramentas populares para realizar tarefas como resolução de IP, consultas WHOIS, varreduras de portas, coleta de subdomínios, extração de metadados, e muito mais. Além disso, análises avançadas são realizadas com IA (*OpenAI API*) para interpretar os resultados e sugerir ações.
-
----
-
-## **O que há de novo na versão 3.1**
-
-A nova versão do **OsintIA_Tools_v3.1** traz importantes melhorias para otimizar a usabilidade, confiabilidade e riqueza dos relatórios gerados. Aqui estão as principais novidades:
-
-### **Melhorias no Código**
-1. **Geração de Índice HTML Funcional**:
-   - O relatório HTML agora inclui um índice interativo, permitindo navegar entre as seções com apenas um clique.
-
-2. **Formatação Avançada do Relatório**:
-   - A saída dos textos analisados com IA foi aprimorada, apresentando parágrafos claros e organizados, facilitando a leitura e interpretação.
-
-3. **Remoção de Códigos ANSI**:
-   - Caracteres de escape ANSI, como `[94m`, foram completamente removidos dos resultados das ferramentas, como *Sublist3r* e *WhatWeb*, garantindo um relatório limpo e profissional.
-
-4. **Conclusão Final Enriquecida**:
-   - Agora, a conclusão do relatório apresenta:
-     - Resumo detalhado dos resultados de cada ferramenta (*Shodan*, *Nmap*, *TheHarvester*, entre outras).
-     - Identificação de riscos críticos e seu impacto no domínio.
-     - Recomendações organizadas por prioridade (*alta*, *média*, *baixa*) para mitigar os riscos.
-     - Melhores práticas e ferramentas sugeridas para fortalecer a segurança.
-
-5. **Melhorias na Conexão com a API da OpenAI**:
-   - Adicionadas pausas estratégicas antes das chamadas à API para maior estabilidade.
-   - Implementado um sistema de *retry* com múltiplas tentativas em caso de falha temporária.
-
-6. **Otimização do DNSEnum**:
-   - Utilização de servidores DNS confiáveis (Google, Cloudflare e Quad9).
-   - Ajustes no `timeout` e no número de *threads* para reduzir o tempo de execução.
-
-7. **Correções e Estabilidade**:
-   - Melhorias na indentação e organização do código para evitar erros como *IndentationError*.
-   - Reutilização de funções como `write_section`, garantindo mais eficiência no desenvolvimento e manutenção.
-
-### **Melhorias no Relatório**
-1. **Resultados Detalhados por Ferramenta**:
-   - Cada ferramenta tem seus resultados apresentados com mais clareza e detalhamento:
-     - *Shodan*: Serviços e vulnerabilidades detectadas.
-     - *Nmap*: Portas abertas e riscos associados.
-     - *TheHarvester*: Subdomínios e pontos de entrada expostos.
-     - *DNSEnum*: Possíveis falhas de configuração DNS.
-   - Todas as análises foram enriquecidas com IA para identificar riscos e propor soluções práticas.
-
-2. **Navegação Intuitiva**:
-   - O índice HTML permite acessar cada seção do relatório de forma rápida e eficiente.
-
-3. **Conclusão Final Robusta**:
-   - A conclusão apresenta:
-     - Resumo executivo dos principais achados.
-     - Riscos organizados por prioridade.
-     - Recomendações práticas e detalhadas.
+The tool utilizes various techniques and integrations with popular tools to perform tasks such as IP resolution, WHOIS lookups, port scanning, subdomain collection, metadata extraction, and much more. Additionally, advanced analyses are performed with AI (*OpenAI API*) to interpret results and suggest actions.
 
 ---
 
-## **Funcionalidades**
+## **What’s New in Version 3.1**
 
-### **Principais Funções**
-- **Resolução de IP com Shodan**:
-  - Obtém informações detalhadas do IP utilizando *Shodan*.
-  - Inclui verificações adicionais com *dig* e *ping* como fallback.
+The new version of **OsintIA_Tools_v3.1** brings significant improvements to optimize usability, reliability, and the richness of generated reports. Here are the main updates:
 
-- **Consulta WHOIS com Fallback para Amass**:
-  - Realiza consultas *WHOIS* para obter informações sobre o domínio.
-  - Utiliza o *Amass* como alternativa para consultas mais abrangentes.
+### **Code Improvements**
+1. **Functional HTML Index Generation**:
+   - The HTML report now includes an interactive index, allowing navigation between sections with just one click.
 
-- **Escaneamento de Portas com Nmap**:
-  - Identifica portas abertas e serviços rodando no domínio.
-  - Resultados analisados por IA para identificar potenciais riscos.
+2. **Advanced Report Formatting**:
+   - The output of AI-analyzed texts has been improved, presenting clear and organized paragraphs, making them easier to read and interpret.
 
-- **Links Indexados com Google Dorks e Photon**:
-  - Realiza buscas avançadas usando Google Dorks.
-  - Integra *Photon* para coleta adicional de URLs relacionadas.
-  - Analisa os dados coletados com IA para identificar informações sensíveis.
+3. **Removal of ANSI Codes**:
+   - ANSI escape characters, such as `[94m`, have been completely removed from the results of tools like *Sublist3r* and *WhatWeb*, ensuring a clean and professional report.
 
-- **Extração de Metadados com Metagoofil**:
-  - Busca e baixa arquivos públicos (PDF, DOCX, XLS).
-  - Extrai metadados para análise detalhada.
-  - Utiliza IA para avaliar os riscos associados aos dados extraídos.
+4. **Enhanced Final Conclusion**:
+   - The report conclusion now includes:
+     - Detailed summary of results from each tool (*Shodan*, *Nmap*, *TheHarvester*, among others).
+     - Identification of critical risks and their impact on the domain.
+     - Recommendations organized by priority (*high*, *medium*, *low*) to mitigate risks.
+     - Best practices and suggested tools to strengthen security.
 
-- **Descoberta de Subdomínios com Sublist3r**:
-  - Coleta subdomínios associados ao domínio principal.
-  - IA analisa os resultados para identificar subdomínios sensíveis ou vulneráveis.
+5. **Improvements in OpenAI API Connection**:
+   - Strategic pauses have been added before API calls for greater stability.
+   - A retry system with multiple attempts has been implemented in case of temporary failure.
 
-- **Detecção de Tecnologias com WhatWeb**:
-  - Identifica tecnologias e frameworks utilizados no site.
-  - IA avalia potenciais vulnerabilidades relacionadas às tecnologias detectadas.
+6. **DNSEnum Optimization**:
+   - Use of reliable DNS servers (Google, Cloudflare, and Quad9).
+   - Adjustments to `timeout` and the number of *threads* to reduce execution time.
 
-- **Coleta de Informações com TheHarvester**:
-  - Recolhe e analisa dados como e-mails e hosts utilizando fontes como Google, Bing, CertSpotter, entre outras.
-  - Inclui análise com IA para identificar dados sensíveis ou riscos.
+7. **Fixes and Stability**:
+   - Improved indentation and code organization to prevent errors like *IndentationError*.
+   - Reuse of functions such as `write_section`, ensuring more efficiency in development and maintenance.
 
-- **Enumeração DNS com DNSEnum**:
-  - Realiza consultas DNS detalhadas utilizando servidores confiáveis.
-  - Analisa os dados obtidos com IA para identificar potenciais falhas de configuração ou exposições.
+### **Report Improvements**
+1. **Detailed Results by Tool**:
+   - Each tool’s results are presented with more clarity and detail:
+     - *Shodan*: Detected services and vulnerabilities.
+     - *Nmap*: Open ports and associated risks.
+     - *TheHarvester*: Exposed subdomains and entry points.
+     - *DNSEnum*: Possible DNS configuration flaws.
+   - All analyses have been enriched with AI to identify risks and propose practical solutions.
 
-- **Conclusão Final com IA**:
-  - Gera um resumo dos principais achados, riscos e vulnerabilidades identificados.
-  - Fornece recomendações práticas de mitigação e melhores práticas de segurança.
+2. **Intuitive Navigation**:
+   - The HTML index allows quick and efficient access to each section of the report.
+
+3. **Robust Final Conclusion**:
+   - The conclusion includes:
+     - Executive summary of key findings.
+     - Risks organized by priority.
+     - Practical and detailed recommendations.
 
 ---
 
-## **Como Usar**
+## **Features**
 
-### **Pré-requisitos**
-Certifique-se de que as seguintes dependências estão instaladas no seu sistema:
+### **Key Functions**
+- **IP Resolution with Shodan**:
+  - Retrieves detailed IP information using *Shodan*.
+  - Includes additional checks with *dig* and *ping* as fallback.
+
+- **WHOIS Lookup with Amass Fallback**:
+  - Performs *WHOIS* lookups to obtain domain information.
+  - Uses *Amass* as an alternative for more comprehensive queries.
+
+- **Port Scanning with Nmap**:
+  - Identifies open ports and running services on the domain.
+  - Results are analyzed by AI to identify potential risks.
+
+- **Indexed Links with Google Dorks and Photon**:
+  - Conducts advanced searches using Google Dorks.
+  - Integrates *Photon* for additional collection of related URLs.
+  - Analyzes collected data with AI to identify sensitive information.
+
+- **Metadata Extraction with Metagoofil**:
+  - Searches and downloads public files (PDF, DOCX, XLS).
+  - Extracts metadata for detailed analysis.
+  - Uses AI to assess risks associated with extracted data.
+
+- **Subdomain Discovery with Sublist3r**:
+  - Collects subdomains associated with the main domain.
+  - AI analyzes the results to identify sensitive or vulnerable subdomains.
+
+- **Technology Detection with WhatWeb**:
+  - Identifies technologies and frameworks used on the website.
+  - AI evaluates potential vulnerabilities related to the detected technologies.
+
+- **Information Gathering with TheHarvester**:
+  - Collects and analyzes data such as emails and hosts using sources like Google, Bing, CertSpotter, among others.
+  - Includes AI analysis to identify sensitive data or risks.
+
+- **DNS Enumeration with DNSEnum**:
+  - Performs detailed DNS queries using reliable servers.
+  - Analyzes the obtained data with AI to identify potential configuration flaws or exposures.
+
+- **Final Conclusion with AI**:
+  - Generates a summary of key findings, risks, and identified vulnerabilities.
+  - Provides practical mitigation recommendations and best security practices.
+
+---
+
+## **How to Use**
+
+### **Prerequisites**
+Ensure the following dependencies are installed on your system:
 
 - **Python 3.10+**
-- Bibliotecas Python:
+- Python Libraries:
   ```bash
   pip install requests beautifulsoup4 openai
   ```
-- Ferramentas do Kali Linux:
+- Kali Linux Tools:
   - `dig`, `whois`, `nmap`, `wget`, `metagoofil`, `theHarvester`, `Sublist3r`, `WhatWeb`, `Photon`, `dnsenum`.
 
 ---
 
-### **Execução**
+### **Execution**
 
-1. Clone o repositório:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/seu-usuario/osintia_tools.git
+   git clone https://github.com/your-username/osintia_tools.git
    cd osintia_tools
    ```
 
-2. Execute o script:
+2. Run the script:
    ```bash
-   python3 OsintIA_Tools.py <domínio>
+   python3 OsintIA_Tools.py <domain>
    ```
 
-3. Exemplos:
+3. Examples:
    ```bash
-   python3 OsintIA_Tools.py globo.com
+   python3 OsintIA_Tools.py example.com
    ```
 
 ---
 
-### **Saídas**
+### **Outputs**
 
-- **Relatório em Texto**: `osint_report.txt`
-- **Relatório em HTML**: `osint_report.html`
+- **Text Report**: `osint_report.txt`
+- **HTML Report**: `osint_report.html`
 
 ---
 
-## **Contribuições**
+## **Contributions**
 
-Contribuições são bem-vindas! Caso queira melhorar ou adicionar funcionalidades:
-1. Faça um fork do projeto.
-2. Crie um branch para sua funcionalidade:
+Contributions are welcome! If you want to improve or add features:
+1. Fork the project.
+2. Create a branch for your feature:
    ```bash
-   git checkout -b minha-melhoria
+   git checkout -b my-improvement
    ```
-3. Submeta um Pull Request!
+3. Submit a Pull Request!
 
 ---
 
-## **Atenção**
+## **Attention**
 
-Para utilizar o OsintIA_Tools.py, é necessário configurar novas chaves de API para as integrações com a OpenAI e o Shodan. Consulte o release notes para detalhes.
+To use OsintIA_Tools.py, you must configure new API keys for integrations with OpenAI and Shodan. See the release notes for details.
+
+---
+
+## **License**
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ---
 
-## **Licença**
-
-Este projeto é licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
-
----
