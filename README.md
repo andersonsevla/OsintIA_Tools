@@ -35,9 +35,17 @@ The new version of **OsintIA_Tools_v3.1** brings significant improvements to opt
    - Use of reliable DNS servers (Google, Cloudflare, and Quad9).
    - Adjustments to `timeout` and the number of *threads* to reduce execution time.
 
-7. **Fixes and Stability**:
-   - Improved indentation and code organization to prevent errors like *IndentationError*.
-   - Reuse of functions such as `write_section`, ensuring more efficiency in development and maintenance.
+7. **Metadata Extraction with Metagoofil**:
+   - Delays introduced between searches to avoid rate limits and blocking.
+   - Additional file formats supported: `doc`, `docx`, `zip`.
+
+8. **Shodan Analysis Enhancements**:
+   - Full Shodan response saved as a JSON file for reference.
+   - More detailed analysis of detected services and vulnerabilities.
+
+9. **Fixes and Stability**:
+   - Improved exception handling for tools like *Metagoofil* and *Sublist3r*.
+   - Consistent and clear status messages during execution.
 
 ### **Report Improvements**
 1. **Detailed Results by Tool**:
@@ -80,7 +88,7 @@ The new version of **OsintIA_Tools_v3.1** brings significant improvements to opt
   - Analyzes collected data with AI to identify sensitive information.
 
 - **Metadata Extraction with Metagoofil**:
-  - Searches and downloads public files (PDF, DOCX, XLS).
+  - Searches and downloads public files (PDF, DOCX, XLS, ZIP).
   - Extracts metadata for detailed analysis.
   - Uses AI to assess risks associated with extracted data.
 
@@ -118,8 +126,7 @@ Ensure the following dependencies are installed on your system:
   ```
 - Kali Linux Tools:
   - `dig`, `whois`, `nmap`, `wget`, `metagoofil`, `theHarvester`, `Sublist3r`, `WhatWeb`, `Photon`, `dnsenum`.
-
----
+- **poppler-utils** (replaces `pdfinfo`).
 
 ### **Execution**
 
@@ -148,6 +155,14 @@ Ensure the following dependencies are installed on your system:
 
 ---
 
+## **Avoiding Blockages**
+To prevent blockages in tools like Metagoofil and Google Dorks:
+- Introduced delays between searches (e.g., 30 seconds).
+- Expanded the supported file types for metadata extraction.
+- Dork queries are optimized for more comprehensive results without overwhelming search engines.
+
+---
+
 ## **Contributions**
 
 Contributions are welcome! If you want to improve or add features:
@@ -171,4 +186,3 @@ To use OsintIA_Tools.py, you must configure new API keys for integrations with O
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ---
-
