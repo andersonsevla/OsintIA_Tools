@@ -132,7 +132,7 @@ Ensure the following dependencies are installed on your system:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/osintia_tools.git
+   git clone https://github.com/andersonsevla/OsintIA_Tools.git
    cd osintia_tools
    ```
 
