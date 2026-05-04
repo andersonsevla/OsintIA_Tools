@@ -1,188 +1,218 @@
-# **OsintIA_Tools.py**
+# 🚀 OsintIA Tools v4.3
 
-**OsintIA_Tools.py** is an automated tool for collecting and analyzing public information, integrating OSINT (*Open Source Intelligence*) methods and artificial intelligence to enhance the results. This script was developed with a focus on cybersecurity, enabling the identification of potential vulnerabilities and threats in domains or organizations.
+**OsintIA Tools** is an advanced security assessment framework that combines **OSINT, automated scanning, attack surface analysis, and AI-driven risk interpretation** to provide a **context-aware security evaluation** of domains and web applications.
 
-The tool utilizes various techniques and integrations with popular tools to perform tasks such as IP resolution, WHOIS lookups, port scanning, subdomain collection, metadata extraction, and much more. Additionally, advanced analyses are performed with AI (*OpenAI API*) to interpret results and suggest actions.
-
----
-
-## **What’s New in Version 3.1**
-
-The new version of **OsintIA_Tools_v3.1** brings significant improvements to optimize usability, reliability, and the richness of generated reports. Here are the main updates:
-
-### **Code Improvements**
-1. **Functional HTML Index Generation**:
-   - The HTML report now includes an interactive index, allowing navigation between sections with just one click.
-
-2. **Advanced Report Formatting**:
-   - The output of AI-analyzed texts has been improved, presenting clear and organized paragraphs, making them easier to read and interpret.
-
-3. **Removal of ANSI Codes**:
-   - ANSI escape characters, such as `[94m`, have been completely removed from the results of tools like *Sublist3r* and *WhatWeb*, ensuring a clean and professional report.
-
-4. **Enhanced Final Conclusion**:
-   - The report conclusion now includes:
-     - Detailed summary of results from each tool (*Shodan*, *Nmap*, *TheHarvester*, among others).
-     - Identification of critical risks and their impact on the domain.
-     - Recommendations organized by priority (*high*, *medium*, *low*) to mitigate risks.
-     - Best practices and suggested tools to strengthen security.
-
-5. **Improvements in OpenAI API Connection**:
-   - Strategic pauses have been added before API calls for greater stability.
-   - A retry system with multiple attempts has been implemented in case of temporary failure.
-
-6. **DNSEnum Optimization**:
-   - Use of reliable DNS servers (Google, Cloudflare, and Quad9).
-   - Adjustments to `timeout` and the number of *threads* to reduce execution time.
-
-7. **Metadata Extraction with Metagoofil**:
-   - Delays introduced between searches to avoid rate limits and blocking.
-   - Additional file formats supported: `doc`, `docx`, `zip`.
-
-8. **Shodan Analysis Enhancements**:
-   - Full Shodan response saved as a JSON file for reference.
-   - More detailed analysis of detected services and vulnerabilities.
-
-9. **Fixes and Stability**:
-   - Improved exception handling for tools like *Metagoofil* and *Sublist3r*.
-   - Consistent and clear status messages during execution.
-
-### **Report Improvements**
-1. **Detailed Results by Tool**:
-   - Each tool’s results are presented with more clarity and detail:
-     - *Shodan*: Detected services and vulnerabilities.
-     - *Nmap*: Open ports and associated risks.
-     - *TheHarvester*: Exposed subdomains and entry points.
-     - *DNSEnum*: Possible DNS configuration flaws.
-   - All analyses have been enriched with AI to identify risks and propose practical solutions.
-
-2. **Intuitive Navigation**:
-   - The HTML index allows quick and efficient access to each section of the report.
-
-3. **Robust Final Conclusion**:
-   - The conclusion includes:
-     - Executive summary of key findings.
-     - Risks organized by priority.
-     - Practical and detailed recommendations.
+Unlike traditional scanners, OsintIA is designed to support **risk-based vulnerability prioritization**, integrating external intelligence, infrastructure exposure, and automated reasoning to produce **professional-grade security reports**.
 
 ---
 
-## **Features**
+## 🎯 Project Vision
 
-### **Key Functions**
-- **IP Resolution with Shodan**:
-  - Retrieves detailed IP information using *Shodan*.
-  - Includes additional checks with *dig* and *ping* as fallback.
+This project is aligned with the concept of:
 
-- **WHOIS Lookup with Amass Fallback**:
-  - Performs *WHOIS* lookups to obtain domain information.
-  - Uses *Amass* as an alternative for more comprehensive queries.
+> **Risk Context Prioritization Funnel**
 
-- **Port Scanning with Nmap**:
-  - Identifies open ports and running services on the domain.
-  - Results are analyzed by AI to identify potential risks.
+Where vulnerabilities are not analyzed in isolation, but instead evaluated based on:
 
-- **Indexed Links with Google Dorks and Photon**:
-  - Conducts advanced searches using Google Dorks.
-  - Integrates *Photon* for additional collection of related URLs.
-  - Analyzes collected data with AI to identify sensitive information.
-
-- **Metadata Extraction with Metagoofil**:
-  - Searches and downloads public files (PDF, DOCX, XLS, ZIP).
-  - Extracts metadata for detailed analysis.
-  - Uses AI to assess risks associated with extracted data.
-
-- **Subdomain Discovery with Sublist3r**:
-  - Collects subdomains associated with the main domain.
-  - AI analyzes the results to identify sensitive or vulnerable subdomains.
-
-- **Technology Detection with WhatWeb**:
-  - Identifies technologies and frameworks used on the website.
-  - AI evaluates potential vulnerabilities related to the detected technologies.
-
-- **Information Gathering with TheHarvester**:
-  - Collects and analyzes data such as emails and hosts using sources like Google, Bing, CertSpotter, among others.
-  - Includes AI analysis to identify sensitive data or risks.
-
-- **DNS Enumeration with DNSEnum**:
-  - Performs detailed DNS queries using reliable servers.
-  - Analyzes the obtained data with AI to identify potential configuration flaws or exposures.
-
-- **Final Conclusion with AI**:
-  - Generates a summary of key findings, risks, and identified vulnerabilities.
-  - Provides practical mitigation recommendations and best security practices.
+- Exposure (public/internal)
+- Infrastructure context
+- Attack surface
+- Real-world accessibility
+- Threat intelligence signals
 
 ---
 
-## **How to Use**
-
-### **Prerequisites**
-Ensure the following dependencies are installed on your system:
-
-- **Python 3.10+**
-- Python Libraries:
-  ```bash
-  pip install requests beautifulsoup4 openai
-  ```
-- Kali Linux Tools:
-  - `dig`, `whois`, `nmap`, `wget`, `metagoofil`, `theHarvester`, `Sublist3r`, `WhatWeb`, `Photon`, `dnsenum`.
-- **poppler-utils** (replaces `pdfinfo`).
-
-### **Execution**
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/andersonsevla/OsintIA_Tools.git
-   cd osintia_tools
-   ```
-
-2. Run the script:
-   ```bash
-   python3 OsintIA_Tools.py <domain>
-   ```
-
-3. Examples:
-   ```bash
-   python3 OsintIA_Tools.py example.com
-   ```
+### 🔑 API Configuration
+```bash
+export OPENAI_API_KEY="your_key"
+export SHODAN_API_KEY="your_key"
+```
 
 ---
 
-### **Outputs**
+## 🔥 What’s New in Version 4.3
 
-- **Text Report**: `osint_report.txt`
-- **HTML Report**: `osint_report.html`
-
----
-
-## **Avoiding Blockages**
-To prevent blockages in tools like Metagoofil and Google Dorks:
-- Introduced delays between searches (e.g., 30 seconds).
-- Expanded the supported file types for metadata extraction.
-- Dork queries are optimized for more comprehensive results without overwhelming search engines.
+### 🧠 AI & Reporting
+- Professional **Markdown report (.md)** generation
+- Structured findings:
+  - Severity
+  - Evidence
+  - Recommendation
+- Improved **AI-driven analysis (consultant-level)**
+- Executive-style security reports
 
 ---
 
-## **Contributions**
-
-Contributions are welcome! If you want to improve or add features:
-1. Fork the project.
-2. Create a branch for your feature:
-   ```bash
-   git checkout -b my-improvement
-   ```
-3. Submit a Pull Request!
+### ⚡ Scanning Enhancements
+- Adaptive scanning modes (safe / aggressive)
+- Intelligent authentication detection
+- Controlled credential testing
+- Improved SQLMap integration
+- Enhanced Nikto handling (partial scan awareness)
 
 ---
 
-## **Attention**
+### 🌐 External Intelligence
+- Full integration with **Shodan API (Membership-ready)**
+- Detection of **CDN/WAF (Cloudflare, etc.)**
+- Improved infrastructure awareness
+- Correlation with Nmap and OSINT tools
 
-To use OsintIA_Tools.py, you must configure new API keys for integrations with OpenAI and Shodan. See the release notes for details.
+---
+
+### 🚀 Load Testing
+- Improved **Siege integration**
+- Added **k6 advanced load testing**
+- Configurable load engines:
+  - `siege`
+  - `k6`
+  - `both`
 
 ---
 
-## **License**
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
+### 📊 Output Improvements
+- Clean reports:
+  - `.txt`
+  - `.html`
+  - `.md` ⭐
+- Raw evidence stored separately (`/raw_outputs`)
+- ANSI escape sequences removed
+- Structured and readable output
 
 ---
+
+## 🧰 Core Capabilities
+
+### 🔍 Reconnaissance & OSINT
+- IP resolution (`dig`, `nslookup`)
+- WHOIS analysis
+- DNS enumeration (`dnsenum`)
+- Subdomain discovery (`Sublist3r`)
+- Metadata extraction (`Metagoofil`)
+- Email/host discovery (`theHarvester`)
+- Web crawling (`Photon`)
+- Google Dorking
+
+---
+
+### 🌐 Infrastructure & Network Analysis
+- **Nmap scanning**
+  - Service detection
+  - Port analysis
+  - Exposure identification
+- **Shodan enrichment**
+  - Services
+  - Banners
+  - Organization
+  - External exposure context
+
+---
+
+### 🧪 Web Security Testing
+- **Nikto**
+  - Header analysis
+  - Misconfiguration detection
+- **WhatWeb**
+  - Technology fingerprinting
+- **SQLMap**
+  - Controlled injection testing
+- **FFUF**
+  - Directory fuzzing
+
+---
+
+### 🔐 Authentication Testing (Adaptive)
+- Automatic detection of login interfaces
+- SPA/API-aware logic
+- Controlled credential testing
+- Safe brute-force simulation (configurable)
+
+---
+
+### 📡 Load Testing
+- **Siege**
+- **k6**
+
+Metrics:
+- Response time
+- Failed transactions
+- Throughput
+
+---
+
+### 🧠 AI-Powered Analysis
+- Context-aware interpretation
+- Risk-based prioritization
+- Detection of:
+  - False positives
+  - Tool limitations
+  - Environmental constraints (CDN/WAF)
+- Professional remediation guidance
+
+---
+
+## ⚙️ Usage
+
+```bash
+python3 OsintIA_Tools_v4_3.py <domain> [options]
+```
+### 🧪 Example (Full Advanced Scan)
+```bash
+python3 OsintIA_Tools_v4_3.py example.com \
+  --mode aggressive \
+  --i-have-authorization \
+  --scheme https \
+  --load-engine both \
+  --siege-profile medium \
+  --k6-vus 10 \
+  --k6-duration 1m \
+  --auth-max-attempts 12
+```
+
+### 🧩 Available Options
+| Option                     | Description                          |
+|---------------------------|--------------------------------------|
+| `--mode`                  | safe / aggressive                    |
+| `--i-have-authorization`  | Required for aggressive mode         |
+| `--scheme`                | http / https                         |
+| `--load-engine`           | none / siege / k6 / both             |
+| `--siege-profile`         | low / medium / high                  |
+| `--k6-vus`                | Virtual users                        |
+| `--k6-duration`           | Duration (e.g. 30s, 1m)              |
+| `--auth-max-attempts`     | Max login attempts                   |
+| `--no-ai`                 | Disable AI analysis                  |
+| `--install-deps`          | Auto install dependencies            |
+---
+
+## 📁 Output Structure
+
+```
+OsintIA_report/
+├── OsintIA_report.txt
+├── OsintIA_report.html
+├── OsintIA_report.md
+└── raw_outputs/
+```
+
+---
+
+## 🔐 Ethical Use
+
+Use only in authorized environments.
+
+---
+
+## 🎓 Academic Contribution (TFM Context)
+
+This project supports research in:
+
+- Vulnerability prioritization
+- Context-aware risk assessment
+- Attack surface intelligence
+- AI-assisted security analysis
+
+---
+
+## 📄 License
+
+MIT License
